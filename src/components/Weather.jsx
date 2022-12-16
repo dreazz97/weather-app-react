@@ -15,7 +15,6 @@ const Weather = () => {
     const fetchweatherData = async () => {
         const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${weatherLocation},pt&units=metric&APPID=001ff9a1a9eb340c0c36808186deae04`)
         const data = await res.json()
-        console.log(data)
         setWeatherIcon(`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
         setWeatherTemp(data.main.temp)
         setWeatherHum(data.main.humidity)
@@ -50,19 +49,23 @@ const Weather = () => {
     <div className="container-lg cm">
       <div className="row text-center">
         <div className="col-lg-12">
-            <h1>Weather APP</h1>
+            <h1 className='title'>Weather APP Portugal</h1>
         </div>
       </div>
       <div className="row text-center cm">
         <div className="col-lg-12">
-            <h1>{weatherLocation}</h1>
+            <h1 className>{weatherLocation}</h1>
             <img src={weatherIcon} />
-            <h2>Temperature: {weatherTemp}ºC</h2>
-            <h2>Humidity: {weatherHum}%</h2>
+            <h2>Temperature: {weatherTemp} ºC</h2>
+            <h2>Humidity: {weatherHum} %</h2>
+        </div>
+        <div className="row text-center justify-content-center">
+          <div className="col-lg-3 col-md-5 col-sm-5 col-8">
             <form ref={formRef} onSubmit={handleSubmit}>
-            <input type="text" ref={inputRef} />
+            <input className='form-control form-style' type="text" ref={inputRef} />
             </form>
-            <button ref={buttonRef}>Change Location</button>
+            <button className='btn-change' ref={buttonRef}>Change Location</button>
+          </div>
         </div>
       </div>
     </div>
