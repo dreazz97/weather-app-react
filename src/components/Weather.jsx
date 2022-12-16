@@ -1,8 +1,8 @@
 import './Weather.css'
 import { useState, useEffect, useRef } from 'react'
 
-
 const Weather = () => {
+  const apiKey = process.env.REACT_APP_API_KEY
   //Substitui a utilização do querySelector com o hook useRef"
   const inputRef = useRef();
   const buttonRef = useRef();
@@ -13,9 +13,9 @@ const Weather = () => {
     const [weatherHum, setWeatherHum] = useState('')
 
     const fetchweatherData = async () => {
-        const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${weatherLocation},pt&units=metric&APPID=001ff9a1a9eb340c0c36808186deae04`)
+        const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${weatherLocation},pt&units=metric&APPID=${apiKey}`)
         const data = await res.json()
-        setWeatherIcon(`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
+        setWeatherIcon(`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
         setWeatherTemp(data.main.temp)
         setWeatherHum(data.main.humidity)
       }
